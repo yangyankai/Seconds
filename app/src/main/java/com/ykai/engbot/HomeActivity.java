@@ -8,10 +8,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.StrictMode;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -63,6 +65,8 @@ public class HomeActivity extends Activity implements IStatus {
     protected int layout = R.layout.common;
     protected Class settingActivityClass = null;
     String strParam;
+    String fileName_timeStamp;
+
 
     /**
      * 识别控制器，使用MyRecognizer控制识别的流程
@@ -92,9 +96,13 @@ public class HomeActivity extends Activity implements IStatus {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+        fileName_timeStamp = "" + SystemClock.uptimeMillis();
 
         // HomeActivity begin
         _this = this;
+
+//        Log.d(TAG, "read_chinese "+       ReadUtils.readChinese());
+//        Log.d(TAG, "read_english "+       ReadUtils.readEnglish());
 
 
         pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
@@ -103,16 +111,12 @@ public class HomeActivity extends Activity implements IStatus {
             wakeLock.acquire();
         }
 
-
         editText = (EditText) findViewById(R.id.edit);
         textView = (TextView) findViewById(R.id.text);
         btnVoice = (Button) findViewById(R.id.voice_2_txt_btn);
         btnChat = (Button) findViewById(R.id.chat_btn);
         btnTTS = (Button) findViewById(R.id.txt_2_voice_btn);
         setting = (Button) findViewById(R.id.voice_settings);
-
-        Intent intent = new Intent(HomeActivity.this, settingActivityClass);
-        startActivity(intent);
 
 
         btnChat.setOnClickListener(new View.OnClickListener() {
@@ -207,7 +211,13 @@ public class HomeActivity extends Activity implements IStatus {
 
                 case 100111:
                     if (null != msg.obj) {
+//                        String mRes=
                         editText.setText(strParam + "\n" + msg.obj.toString());
+//                        PrintUtils.myPrintLog(fileName_timeStamp, strParam, msg.obj.toString());
+//                        MyPrintLogUtil.printLog("" + strParam + "\n");
+                        MyPrintLogUtil.printChineseLog(strParam);
+                        MyPrintLogUtil.printEnglishLog(msg.obj.toString());
+
                         //textView.setText("" + msg.obj.toString());
                     } else {
                         textView.setText("null");
@@ -412,7 +422,7 @@ public class HomeActivity extends Activity implements IStatus {
                 break;
 
             case STATUS_STOPPED:
-                btnVoice.setText("取消整个识别过程");
+                btnVoice.setText("正在取消...");
                 btnVoice.setEnabled(true);
                 setting.setEnabled(false);
                 break;
