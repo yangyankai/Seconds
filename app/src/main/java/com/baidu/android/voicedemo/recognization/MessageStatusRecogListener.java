@@ -2,6 +2,7 @@ package com.baidu.android.voicedemo.recognization;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 /**
  * Created by fujiayi on 2017/6/16.
@@ -35,20 +36,23 @@ public class MessageStatusRecogListener extends StatusRecogListener {
     public void onAsrEnd() {
         super.onAsrEnd();
         speechEndTime = System.currentTimeMillis();
-        sendMessage("检测到用户说话结束");
+//        sendMessage("检测到用户说话结束");
     }
 
     @Override
     public void onAsrPartialResult(String[] results, RecogResult recogResult) {
-        sendStatusMessage("临时识别结果，结果是“" + results[0] + "”；原始json：" + recogResult.getOrigalJson());
+        sendStatusMessage("" + results[0] );
+        Log.d("yyk", "onAsrPartialResult: " + results[0]);
+
+//        sendStatusMessage("临时识别结果，结果是“" + results[0] + "”；原始json：" + recogResult.getOrigalJson());
         super.onAsrPartialResult(results, recogResult);
     }
 
     @Override
     public void onAsrFinalResult(String[] results, RecogResult recogResult) {
         super.onAsrFinalResult(results, recogResult);
-        String message = "识别结束，结果是”" + results[0]+"”";
-        sendStatusMessage(message + "“；原始json：" + recogResult.getOrigalJson());
+        String message = "识别结束，结果是”" + results[0] + "”";
+//        sendStatusMessage(message + "“；原始json：" + recogResult.getOrigalJson());
         if (speechEndTime > 0) {
             long diffTime = System.currentTimeMillis() - speechEndTime;
             message += "；说话结束到识别结束耗时【" + diffTime + "ms】";
@@ -84,7 +88,7 @@ public class MessageStatusRecogListener extends StatusRecogListener {
     @Override
     public void onAsrFinish(RecogResult recogResult) {
         super.onAsrFinish(recogResult);
-        sendStatusMessage("识别一段话结束。如果是长语音的情况会继续识别下段话。");
+        //sendStatusMessage("识别一段话结束。如果是长语音的情况会继续识别下段话。");
 
     }
 
@@ -105,6 +109,7 @@ public class MessageStatusRecogListener extends StatusRecogListener {
     public void onOfflineLoaded() {
         sendStatusMessage("【重要】离线资源加载成功。没有此回调可能离线语法功能不能使用。");
     }
+
     /**
      * 使用离线语法时，有该回调说明离线语法资源加载成功
      */
@@ -134,7 +139,7 @@ public class MessageStatusRecogListener extends StatusRecogListener {
 
     private void sendMessage(String message, int what, boolean highlight) {
         if (needTime && what != STATUS_FINISHED) {
-            message += "  ;time=" + System.currentTimeMillis();
+//            message += "  ;time=" + System.currentTimeMillis();
         }
         Message msg = Message.obtain();
         msg.what = what;

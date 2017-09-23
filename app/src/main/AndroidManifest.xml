@@ -101,6 +101,8 @@
         <!-- home end -->
 
         <activity android:name="com.ykai.englishdialog.myapplication.ChatMainActivity"></activity>
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".HistoryDetailActivity" />
 
 
         <!-- void begin -->

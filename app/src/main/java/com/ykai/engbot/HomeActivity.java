@@ -101,6 +101,8 @@ public class HomeActivity extends Activity implements IStatus {
         // HomeActivity begin
         _this = this;
 
+        startActivity(new Intent(_this, HistoryActivity.class));
+
 //        Log.d(TAG, "read_chinese "+       ReadUtils.readChinese());
 //        Log.d(TAG, "read_english "+       ReadUtils.readEnglish());
 
@@ -212,15 +214,18 @@ public class HomeActivity extends Activity implements IStatus {
                 case 100111:
                     if (null != msg.obj) {
 //                        String mRes=
-                        editText.setText(strParam + "\n" + msg.obj.toString());
+                        String res= msg.obj.toString().replace(",",". ");
+                        editText.setText(""+res);
 //                        PrintUtils.myPrintLog(fileName_timeStamp, strParam, msg.obj.toString());
 //                        MyPrintLogUtil.printLog("" + strParam + "\n");
                         MyPrintLogUtil.printChineseLog(strParam);
-                        MyPrintLogUtil.printEnglishLog(msg.obj.toString());
+                        MyPrintLogUtil.printEnglishLog(res);
 
                         //textView.setText("" + msg.obj.toString());
                     } else {
-                        textView.setText("null");
+//                        textView.setText("null");
+                        editText.setText("null");
+
                     }
 
                     break;
@@ -238,7 +243,10 @@ public class HomeActivity extends Activity implements IStatus {
 
     protected void handleMsg(Message msg) {
         if (textView != null && msg.obj != null) {
-            textView.append(msg.obj.toString() + "\n");
+            String res = msg.obj.toString();
+            res.replace(",", ". ");
+            textView.setText(res + "\n");
+//            textView.append(msg.obj.toString() + "\n");
         }
         switch (msg.what) { // 处理MessageStatusRecogListener中的状态回调
             case STATUS_FINISHED:
