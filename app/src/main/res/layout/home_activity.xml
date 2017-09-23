@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,39 +8,47 @@
         android:id="@+id/edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="今天的天气真好" />
+
+        android:text="秒记 - 会议记录的好助手" />
 
 
     <Button
+
         android:id="@+id/voice_2_txt_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:text="VoiceToText" />
 
     <Button
         android:id="@+id/chat_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chat" />
+        android:text="Chat"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/txt_2_voice_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextToVoice" />
+        android:text="TextToVoice"
+        android:visibility="gone" />
 
 
     <Button
         android:id="@+id/voice_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Voice Settings" />
+        android:text="Settings"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="..." />
+        android:text="..."
+        android:visibility="gone" />
 
 
-</LinearLayout>
+</RelativeLayout>

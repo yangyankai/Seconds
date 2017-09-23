@@ -16,12 +16,12 @@ public class ChatUtil {
 
     // 需要开子线程异步调用
     public static String getEnglistReturn(String strInput) {
-        chatMessage = HttpUtils.sendMessage(strInput);
+        //  chatMessage = HttpUtils.sendMessage(strInput);
 
 
         BaiduTranslateHelper baiduTranslateHelper = new BaiduTranslateHelper();
         try {
-            baiduTranslateHelper.translate(new String(chatMessage.getMessage().getBytes(), "utf-8"), "zh", "en", new HttpCallBack() {
+            baiduTranslateHelper.translate(new String(strInput.getBytes(), "utf-8"), "zh", "en", new HttpCallBack() {
                 @Override
                 public void onSuccess(String result) {
 //                    chatMessage.setMessage(chatMessage.getMessage() + "\n" + result);
