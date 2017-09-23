@@ -4,22 +4,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:text="秒记 - 会议记录的好助手" />
-
+    <TextView
+        android:textColor="#000"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:text="会议时长"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="00:00"
+        android:textColor="#0093c4"
+        android:textSize="64sp"
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <Button
-
         android:id="@+id/voice_2_txt_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="VoiceToText" />
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="19sp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/shape_cor"
+        android:text="开始"
+        android:textColor="#fff" />
+
+    <!--android:background="@drawable/shape_cor"-->
+
 
     <Button
         android:id="@+id/chat_btn"
@@ -36,23 +54,67 @@
         android:visibility="gone" />
 
 
+    <!--Settings -->
     <Button
-        android:layout_below="@+id/edit"
         android:id="@+id/voice_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
-        android:visibility="visible" />
-
-
-    <!--显示过程-->
-    <TextView
-        android:layout_marginTop="100dp"
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="#0000"
         android:text="..."
         android:visibility="visible" />
 
+
+
+
+    <ImageView
+        android:id="@+id/recorder_bigger"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/recorder_bigger" />
+
+
+    <ImageView
+        android:id="@+id/little"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/recoder_little" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
+        android:src="@drawable/join_metting" />
+
+
+
+    <!--翻译-->
+    <TextView
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="17sp"
+        android:textColor="#000"
+
+        android:text="秒记 - 会议记录的好助手" />
+
+
+    <!--显示录入过程过程-->
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:text="引擎初始化..."
+        android:visibility="visible" />
 
 </RelativeLayout>

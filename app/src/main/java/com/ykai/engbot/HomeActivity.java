@@ -20,7 +20,9 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baidu.android.voicedemo.activity.setting.AllSetting;
@@ -37,6 +39,8 @@ import com.ykai.englishdialog.myapplication.ChatUtil;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * 取保手机有网
@@ -45,12 +49,16 @@ import java.util.Map;
 public class HomeActivity extends Activity implements IStatus {
     // HomeActivity begin
     private Activity _this;
-    EditText editText;
+    TextView editText;
+    private boolean isRecording = false;
+    Timer timer = new Timer();
     TextView textView;
     Button btnVoice;
     Button btnTTS;
     Button btnChat;
     Button setting;
+    private int recLen = 0;
+
     private String TAG = "yyk";
 
     PowerManager pm;
@@ -59,6 +67,7 @@ public class HomeActivity extends Activity implements IStatus {
 
 
     // Voice begin
+    ImageView imageView;
 
     protected Handler handler;
     protected String DESC_TEXT;
@@ -66,6 +75,7 @@ public class HomeActivity extends Activity implements IStatus {
     protected Class settingActivityClass = null;
     String strParam;
     String fileName_timeStamp;
+    TextView counter;
 
 
     /**
@@ -97,11 +107,12 @@ public class HomeActivity extends Activity implements IStatus {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         fileName_timeStamp = "" + SystemClock.uptimeMillis();
+        timer.schedule(task, 1000, 1000);       // timeTask
+        imageView = (ImageView) findViewById(R.id.recorder_bigger);
 
         // HomeActivity begin
         _this = this;
 
-        startActivity(new Intent(_this, HistoryActivity.class));
 
 //        Log.d(TAG, "read_chinese "+       ReadUtils.readChinese());
 //        Log.d(TAG, "read_english "+       ReadUtils.readEnglish());
@@ -113,12 +124,13 @@ public class HomeActivity extends Activity implements IStatus {
             wakeLock.acquire();
         }
 
-        editText = (EditText) findViewById(R.id.edit);
+        editText = (TextView) findViewById(R.id.edit);
         textView = (TextView) findViewById(R.id.text);
         btnVoice = (Button) findViewById(R.id.voice_2_txt_btn);
         btnChat = (Button) findViewById(R.id.chat_btn);
         btnTTS = (Button) findViewById(R.id.txt_2_voice_btn);
         setting = (Button) findViewById(R.id.voice_settings);
+        counter = (TextView) findViewById(R.id.counter);
 
 
         btnChat.setOnClickListener(new View.OnClickListener() {
@@ -158,7 +170,39 @@ public class HomeActivity extends Activity implements IStatus {
         // Voice end
     }
 
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            if (isRecording) {
+                recLen++;
+
+            }
+            int seconds = recLen % 60;
+            int minute = recLen / 60;
+
+
+            String strSecods;
+            if (seconds < 10) {
+                strSecods = "0" + seconds;
+            } else {
+                strSecods = "" + seconds;
+
+            }
+
+            String strMinutes;
+            if (minute < 10) {
+                strMinutes = "0" + minute;
+            } else {
+                strMinutes = "" + minute;
+
+            }
+            counter.setText(strMinutes + ":" + strSecods);
+            handler.postDelayed(this, 1000);
+        }
+    };
+
     private void translate() {
+        isRecording = true;
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -214,17 +258,20 @@ public class HomeActivity extends Activity implements IStatus {
                 case 100111:
                     if (null != msg.obj) {
 //                        String mRes=
-                        String res= msg.obj.toString().replace(",",". ");
-                        editText.setText(""+res);
+                        String res = msg.obj.toString().replace(",", ". ");
+                        editText.setText("" + res);
+                        imageView.setVisibility(View.VISIBLE);
+
 //                        PrintUtils.myPrintLog(fileName_timeStamp, strParam, msg.obj.toString());
 //                        MyPrintLogUtil.printLog("" + strParam + "\n");
                         MyPrintLogUtil.printChineseLog(strParam);
                         MyPrintLogUtil.printEnglishLog(res);
 
+//                        mHandler.removeCallbacks(runnable);
                         //textView.setText("" + msg.obj.toString());
                     } else {
 //                        textView.setText("null");
-                        editText.setText("null");
+                        editText.setText("未输入...");
 
                     }
 
@@ -246,6 +293,12 @@ public class HomeActivity extends Activity implements IStatus {
             String res = msg.obj.toString();
             res.replace(",", ". ");
             textView.setText(res + "\n");
+            if (res.length() % 2 == 0) {
+                imageView.setVisibility(View.GONE);
+            } else {
+                imageView.setVisibility(View.VISIBLE);
+
+            }
 //            textView.append(msg.obj.toString() + "\n");
         }
         switch (msg.what) { // 处理MessageStatusRecogListener中的状态回调
@@ -284,8 +337,12 @@ public class HomeActivity extends Activity implements IStatus {
 
             @Override
             public void onClick(View v) {
+                if (btnVoice.getText().toString().contains("开始")) {
 
+
+                }
                 beginTalk();
+//                handler.postDelayed(runnable, 1000);
 
 
             }
@@ -293,6 +350,43 @@ public class HomeActivity extends Activity implements IStatus {
 
 
     }
+
+
+    TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+
+            runOnUiThread(new Runnable() {      // UI thread
+                @Override
+                public void run() {
+//                    if (isRecording) {
+                    if (btnVoice.getText().toString().contains("停止")) {
+                        recLen++;
+
+                    }
+                    int seconds = recLen % 60;
+                    String strSecods;
+                    if (seconds < 10) {
+                        strSecods = "0" + seconds;
+                    } else {
+                        strSecods = "" + seconds;
+
+                    }
+                    int minute = recLen / 60;
+
+                    String strMinutes;
+                    if (minute < 10) {
+                        strMinutes = "0" + minute;
+                    } else {
+                        strMinutes = "" + minute;
+
+                    }
+                    counter.setText(strMinutes + ":" + strSecods);
+                }
+            });
+        }
+    };
+
 
     private void beginTalk() {
 
@@ -427,9 +521,13 @@ public class HomeActivity extends Activity implements IStatus {
                 btnVoice.setText("停止录音");
                 btnVoice.setEnabled(true);
                 setting.setEnabled(false);
+                isRecording = false;
                 break;
 
             case STATUS_STOPPED:
+
+                //timer.schedule(task, 100000000, 1000);       // timeTask
+
                 btnVoice.setText("正在取消...");
                 btnVoice.setEnabled(true);
                 setting.setEnabled(false);
