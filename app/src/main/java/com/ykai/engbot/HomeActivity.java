@@ -2,30 +2,24 @@ package com.ykai.engbot;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
+
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.os.PowerManager;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.text.Layout;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.TextUtils;
-import android.text.method.ScrollingMovementMethod;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baidu.android.voicedemo.activity.setting.AllSetting;
 import com.baidu.android.voicedemo.control.MyRecognizer;
@@ -37,19 +31,8 @@ import com.baidu.android.voicedemo.recognization.all.AllRecogParams;
 import com.baidu.android.voicedemo.recognization.offline.OfflineRecogParams;
 import com.baidu.android.voicedemo.recognization.online.InFileStream;
 import com.baidu.android.voicedemo.util.Logger;
-import com.baidu.tts.auth.AuthInfo;
-import com.baidu.tts.client.SpeechError;
-import com.baidu.tts.client.SpeechSynthesizer;
-import com.baidu.tts.client.SpeechSynthesizerListener;
-import com.baidu.tts.client.SynthesizerTool;
-import com.baidu.tts.client.TtsMode;
 import com.ykai.englishdialog.myapplication.ChatUtil;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -57,7 +40,7 @@ import java.util.Map;
  * 取保手机有网
  * Created by ykai on 17/9/16.
  */
-public class HomeActivity extends Activity implements View.OnClickListener, IStatus {
+public class HomeActivity extends Activity implements IStatus {
     // HomeActivity begin
     private Activity _this;
     EditText editText;
@@ -67,15 +50,14 @@ public class HomeActivity extends Activity implements View.OnClickListener, ISta
     Button btnChat;
     Button setting;
     private String TAG = "yyk";
+
+    PowerManager pm;
+    PowerManager.WakeLock wakeLock;
     // HomeActivity end
 
 
     // Voice begin
 
-    //    protected TextView textView;
-//    protected Button btn;
-//    protected Button setting;
-//    protected TextView txtResult;
     protected Handler handler;
     protected String DESC_TEXT;
     protected int layout = R.layout.common;
@@ -112,6 +94,14 @@ public class HomeActivity extends Activity implements View.OnClickListener, ISta
         setContentView(R.layout.home_activity);
         // HomeActivity begin
         _this = this;
+
+
+        pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
+        wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "PostLocationService");
+        if (null != wakeLock) {
+            wakeLock.acquire();
+        }
+
 
         editText = (EditText) findViewById(R.id.edit);
         textView = (TextView) findViewById(R.id.text);
@@ -186,22 +176,17 @@ public class HomeActivity extends Activity implements View.OnClickListener, ISta
     // HomeActivity begin
     @Override
     protected void onDestroy() {
+
+        if (null != wakeLock) {
+            wakeLock.release();
+            wakeLock = null;
+        }
+
         myRecognizer.release(); // voice
 
         super.onDestroy();
     }
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.txt_2_voice_btn:
-                break;
-
-            default:
-                break;
-        }
-    }
     // HomeActivity end
 
 

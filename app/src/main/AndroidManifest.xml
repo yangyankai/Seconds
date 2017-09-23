@@ -34,6 +34,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
 
     <!-- end: baidu speech sdk  权限 -->
     <application
@@ -52,16 +54,26 @@
         <!-- 请填写真实的APP_ID API_KEY SECRET_KEY-->
         <meta-data
             android:name="com.baidu.speech.APP_ID"
-            android:value="10127572" />
+            android:value="10178962" />
+
+        <!--android:value="10127572" />-->
+
+
         <!-- 再次重复！！填写APP_ID 时请检查在官网的该应用内是否设置了包名。否则会导致唤醒词及离线功能无法使用。
          本demo的包名是com.baidu.speech.recognizerdemo，在build.gradle文件中查看。 -->
         <!-- 正式发布时，请替换成您自己的appId 本demo的appId会不定时下线 -->
         <meta-data
             android:name="com.baidu.speech.API_KEY"
-            android:value="rZh0DLQKcqMzYjNSf2mwVByA" />
+            android:value="w4TSnsjWfkWGNhfD3FkRGsMB" />
+        <!--android:value="rZh0DLQKcqMzYjNSf2mwVByA" />-->
+
+
+
         <meta-data
             android:name="com.baidu.speech.SECRET_KEY"
-            android:value="3137fd3bec47ff381c37505583a044c4" />
+            android:value="Rd8vxWofdqPtUR43sk9Vam50VtmI6Oks" />
+        <!--android:value="3137fd3bec47ff381c37505583a044c4" />-->
+
 
         <service
             android:name="com.baidu.speech.VoiceRecognitionService"
@@ -88,12 +100,6 @@
 
         <activity android:name="com.ykai.englishdialog.myapplication.ChatMainActivity"></activity>
 
-
-        <!-- TTS begin -->
-        <activity android:name="com.baidu.tts.sample.MainActivity"></activity>
-        <activity android:name="com.baidu.tts.sample.MainActivity2"></activity>
-        <activity android:name="com.baidu.tts.sample.ModelManagerActivity"></activity>
-        <!-- TTS end -->
 
         <!-- void begin -->
         <activity
@@ -145,7 +151,7 @@
             android:name="com.baidu.android.voicedemo.activity.ActivityWakeUp"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="唤醒词"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait">`
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="com.baidu.speech.recognizerdemo.intent.category.SAMPLE_CODE" />

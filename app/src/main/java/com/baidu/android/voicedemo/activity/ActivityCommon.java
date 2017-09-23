@@ -2,35 +2,22 @@ package com.baidu.android.voicedemo.activity;
 
 import android.Manifest;
 import android.app.Activity;
-import android.os.Environment;
 import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.baidu.android.voicedemo.util.Logger;
-//import com.baidu.speech.recognizerdemo.R;
 import com.baidu.android.voicedemo.recognization.online.InFileStream;
-import com.baidu.tts.auth.AuthInfo;
-import com.baidu.tts.client.SpeechSynthesizer;
-import com.baidu.tts.client.TtsMode;
 import com.ykai.engbot.R;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -116,7 +103,7 @@ public abstract class ActivityCommon extends Activity {
 
         ArrayList<String> toApplyList = new ArrayList<String>();
 
-        for (String perm :permissions){
+        for (String perm : permissions) {
             if (PackageManager.PERMISSION_GRANTED != ContextCompat.checkSelfPermission(this, perm)) {
                 toApplyList.add(perm);
                 //进入到这里代表没有权限.
@@ -124,7 +111,7 @@ public abstract class ActivityCommon extends Activity {
             }
         }
         String tmpList[] = new String[toApplyList.size()];
-        if (!toApplyList.isEmpty()){
+        if (!toApplyList.isEmpty()) {
             ActivityCompat.requestPermissions(this, toApplyList.toArray(tmpList), 123);
         }
 

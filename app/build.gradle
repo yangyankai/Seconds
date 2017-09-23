@@ -33,6 +33,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile files('libs/bdasr_V3_20170801_60da871.jar')
-    compile files('libs/com.baidu.tts_2.3.0.jar')
     compile files('libs/gson-2.2.4.jar')
 }
