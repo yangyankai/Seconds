@@ -34,17 +34,19 @@ public class NLPUtil {
         // 选择CNN算法
         HashMap<String, String> options = new HashMap<String, String>();
         options.put("model", "CNN");
-        JSONObject response1 = client.simnet("百度是个搜索公司", "百度是个科技公司", options);
+        JSONObject response1 = client.simnet(sentence1, sentence2, options);
+        Log.d(TAG, "run: " + response1.toString());
+
         double hSimilar = 0.0;
 
 
         try {
             hSimilar = response1.getDouble("score");
+            Log.d(TAG, "howSimilar: ok " + hSimilar);
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.d(TAG, "howSimilar: err " + e.toString());
         }
 
-        Log.d(TAG, "run: " + response1.toString());
 
         return hSimilar;
 

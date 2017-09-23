@@ -70,12 +70,13 @@ public class HomeActivity extends Activity implements IStatus {
     ImageView imageView;
 
     protected Handler handler;
-    protected String DESC_TEXT;
+    protected String DESC_TEXT = "";
     protected int layout = R.layout.common;
     protected Class settingActivityClass = null;
     String strParam;
     String fileName_timeStamp;
     TextView counter;
+    TextView meetingDuring;
 
 
     /**
@@ -109,6 +110,15 @@ public class HomeActivity extends Activity implements IStatus {
         fileName_timeStamp = "" + SystemClock.uptimeMillis();
         timer.schedule(task, 1000, 1000);       // timeTask
         imageView = (ImageView) findViewById(R.id.recorder_bigger);
+        meetingDuring = (TextView) findViewById(R.id.meeting_during);
+
+
+        meetingDuring.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(_this, HistoryActivity.class));
+            }
+        });
 
         // HomeActivity begin
         _this = this;

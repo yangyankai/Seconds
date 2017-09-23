@@ -50,13 +50,11 @@ public class MyPrintLogUtil {
         long beginTime = System.currentTimeMillis();
 
 
-
-
         try {
 
             fw = new FileWriter(tempPath, true);
 
-            fw.write( content);
+            fw.write(content);
 
             fw.close();
 
@@ -106,13 +104,231 @@ public class MyPrintLogUtil {
         long beginTime = System.currentTimeMillis();
 
 
+        try {
+
+            fw = new FileWriter(tempPath, true);
+
+            fw.write(content);
+
+            fw.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+
+    public static void printTopic1(String content) {
+        content += "\n";
+
+        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top1_log_temp.txt";
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top1_log.txt";
+
+//        String tempPath = "/local/newlog/aplog/overheat_log_temp.txt";
+
+//        String path = "/local/newlog/aplog/overheat_log.txt";
+
+
+        File tempFile = new File(tempPath);
+
+        File file = new File(path);
+
+
+        if (tempFile.exists() && tempFile.isFile()) {
+
+            if (tempFile.length() >= 1024 * 1024) {
+
+                if (file.isFile() && file.exists()) {
+
+                    file.delete();
+
+                }
+
+                tempFile.renameTo(file);
+
+            }
+
+        }
+
+
+        FileWriter fw = null;
+
+        long beginTime = System.currentTimeMillis();
 
 
         try {
 
             fw = new FileWriter(tempPath, true);
 
-            fw.write( content);
+            fw.write(content);
+
+            fw.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+
+    public static void printTopic2(String content) {
+        content += "\n";
+
+        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top2_log_temp.txt";
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top2_log.txt";
+
+//        String tempPath = "/local/newlog/aplog/overheat_log_temp.txt";
+
+//        String path = "/local/newlog/aplog/overheat_log.txt";
+
+
+        File tempFile = new File(tempPath);
+
+        File file = new File(path);
+
+
+        if (tempFile.exists() && tempFile.isFile()) {
+
+            if (tempFile.length() >= 1024 * 1024) {
+
+                if (file.isFile() && file.exists()) {
+
+                    file.delete();
+
+                }
+
+                tempFile.renameTo(file);
+
+            }
+
+        }
+
+
+        FileWriter fw = null;
+
+        long beginTime = System.currentTimeMillis();
+
+
+        try {
+
+            fw = new FileWriter(tempPath, true);
+
+            fw.write(content);
+
+            fw.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+
+    public static void printTopic3(String content) {
+        content += "\n";
+
+        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top3_log_temp.txt";
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top3_log.txt";
+
+//        String tempPath = "/local/newlog/aplog/overheat_log_temp.txt";
+
+//        String path = "/local/newlog/aplog/overheat_log.txt";
+
+
+        File tempFile = new File(tempPath);
+
+        File file = new File(path);
+
+
+        if (tempFile.exists() && tempFile.isFile()) {
+
+            if (tempFile.length() >= 1024 * 1024) {
+
+                if (file.isFile() && file.exists()) {
+
+                    file.delete();
+
+                }
+
+                tempFile.renameTo(file);
+
+            }
+
+        }
+
+
+        FileWriter fw = null;
+
+        long beginTime = System.currentTimeMillis();
+
+
+        try {
+
+            fw = new FileWriter(tempPath, true);
+
+            fw.write(content);
+
+            fw.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+
+    public static void printTopic4(String content) {
+        content += "\n";
+
+        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top4_log_temp.txt";
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top4_log.txt";
+
+//        String tempPath = "/local/newlog/aplog/overheat_log_temp.txt";
+
+//        String path = "/local/newlog/aplog/overheat_log.txt";
+
+
+        File tempFile = new File(tempPath);
+
+        File file = new File(path);
+
+
+        if (tempFile.exists() && tempFile.isFile()) {
+
+            if (tempFile.length() >= 1024 * 1024) {
+
+                if (file.isFile() && file.exists()) {
+
+                    file.delete();
+
+                }
+
+                tempFile.renameTo(file);
+
+            }
+
+        }
+
+
+        FileWriter fw = null;
+
+        long beginTime = System.currentTimeMillis();
+
+
+        try {
+
+            fw = new FileWriter(tempPath, true);
+
+            fw.write(content);
 
             fw.close();
 
