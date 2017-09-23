@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="今天的天气真好" />
+
+
+    <Button
+        android:id="@+id/voice_2_txt_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VoiceToText" />
+
+    <Button
+        android:id="@+id/chat_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chat" />
+
+    <Button
+        android:id="@+id/txt_2_voice_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextToVoice" />
+
+
+    <Button
+        android:id="@+id/voice_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voice Settings" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="..." />
+
+
+</LinearLayout>
