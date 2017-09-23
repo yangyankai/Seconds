@@ -1,5 +1,11 @@
 # 秒记
 
+
+下载链接:
+
+https://yangyankai.github.io/assets/images/Seconds.apk
+
+
 会议记录的好助手
 
 我们的功能:
