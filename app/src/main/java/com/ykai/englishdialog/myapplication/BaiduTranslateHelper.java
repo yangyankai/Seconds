@@ -23,13 +23,23 @@ public class BaiduTranslateHelper {
 
 
 
-    private static final String UTF8 = "utf-8";
+    //申请者开发者id，实际使用时请修改成开发者自己的appid
+    private static final String APP_ID = "20170528000049484"; // yyk 的id
+    //申请成功后的证书token，实际使用时请修改成开发者自己的token (密钥)
+    private static final String SECRET_KEY = "_2uEwktq9rL0Y6rFF_iC"; // yyk的token
+
+
 
     //申请者开发者id，实际使用时请修改成开发者自己的appid
-    private static final String APP_ID = "20170528000049484";
-
+//    private static final String APP_ID = "20170528000049484";
     //申请成功后的证书token，实际使用时请修改成开发者自己的token (密钥)
-    private static final String SECRET_KEY = "_2uEwktq9rL0Y6rFF_iC";
+//    private static final String SECRET_KEY = "_2uEwktq9rL0Y6rFF_iC";
+
+
+
+
+    private static final String UTF8 = "utf-8";
+
     //翻译API HTTP地址：
     private static final String baseURL = "http://api.fanyi.baidu.com/api/trans/vip/translate";
 

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.baidu.android.voicedemo.util.AuthInfo;
@@ -33,21 +34,22 @@ public class CommonRecogParams {
     /**
      * 字符串格式的参数
      */
-    protected  ArrayList<String> stringParams = new ArrayList<String>();
+    protected ArrayList<String> stringParams = new ArrayList<String>();
 
     /**
      * int格式的参数
      */
-    protected  ArrayList<String> intParams = new ArrayList<String>();
+    protected ArrayList<String> intParams = new ArrayList<String>();
 
     /**
      * bool格式的参数
      */
-    protected  ArrayList<String> boolParams = new ArrayList<String>();
+    protected ArrayList<String> boolParams = new ArrayList<String>();
 
     private static final String TAG = "CommonRecogParams";
 
-    public CommonRecogParams(Activity context) {
+    public CommonRecogParams(final Activity context) {
+        Log.d(TAG, "CommonRecogParams: yyk2");
 
         stringParams.addAll(Arrays.asList(
                 SpeechConstant.VAD,
@@ -60,16 +62,25 @@ public class CommonRecogParams {
                 SpeechConstant.ACCEPT_AUDIO_DATA,
                 SpeechConstant.ACCEPT_AUDIO_VOLUME
         ));
-        initSamplePath(context);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                initSamplePath(context);
+
+            }
+        }).start();
     }
 
     /**
      * 创建保存OUTFILE的临时目录. 仅用于OUTFILE参数。不使用demo中的OUTFILE参数可忽略此段
+     *
      * @param context
      */
     protected void initSamplePath(Activity context) {
         String sampleDir = "baiduASR";
-        samplePath = Environment.getExternalStorageDirectory().toString() + "/" + sampleDir;
+//        Environment.getExternalStorageDirectory().getAbsolutePath() + "//overheat_log_temp.txt";
+        samplePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + sampleDir;
         if (!FileUtil.makeDir(samplePath)) {
             samplePath = context.getApplication().getExternalFilesDir(sampleDir).getAbsolutePath();
             if (!FileUtil.makeDir(samplePath)) {
@@ -80,7 +91,7 @@ public class CommonRecogParams {
 
     public Map<String, Object> fetch(SharedPreferences sp) {
         Map<String, Object> map = new HashMap<String, Object>();
-
+        Log.d(TAG, "fetch: yyk3");
         parseParamArr(sp, map);
 
         if (sp.getBoolean("_tips_sound", false)) { // 声音回调
@@ -101,29 +112,42 @@ public class CommonRecogParams {
 
     /**
      * 根据 stringParams intParams boolParams中定义的参数名称，提取SharedPreferences相关字段
+     *
      * @param sp
      * @param map
      */
     private void parseParamArr(SharedPreferences sp, Map<String, Object> map) {
+
+        Log.d(TAG, "parseParamArr: stringParams 000 ");
+
         for (String name : stringParams) {
             if (sp.contains(name)) {
                 String tmp = sp.getString(name, "").replaceAll(",.*", "").trim();
                 if (null != tmp && !"".equals(tmp)) {
                     map.put(name, tmp);
+                    Log.d(TAG, "parseParamArr: stringParams K " + name + " V" + tmp);
+
                 }
             }
         }
+//        map.put();
         for (String name : intParams) {
             if (sp.contains(name)) {
                 String tmp = sp.getString(name, "").replaceAll(",.*", "").trim();
                 if (null != tmp && !"".equals(tmp)) {
+
                     map.put(name, Integer.parseInt(tmp));
+                    Log.d(TAG, "parseParamArr: intParams K " + name + " V" + tmp);
+
                 }
             }
         }
         for (String name : boolParams) {
             if (sp.contains(name)) {
+
                 map.put(name, sp.getBoolean(name, false));
+                Log.d(TAG, "parseParamArr: boolParams K " + name + " V" + false);
+
             }
         }
     }

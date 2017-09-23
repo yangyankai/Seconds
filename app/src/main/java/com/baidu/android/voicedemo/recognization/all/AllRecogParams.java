@@ -2,6 +2,7 @@ package com.baidu.android.voicedemo.recognization.all;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.baidu.android.voicedemo.recognization.CommonRecogParams;
 import com.baidu.android.voicedemo.recognization.PidBuilder;
@@ -22,6 +23,7 @@ public class AllRecogParams extends CommonRecogParams {
 
     public AllRecogParams(Activity context) {
         super(context);
+        Log.d(TAG, "AllRecogParams: yyk1");
         stringParams.addAll(Arrays.asList(
                 SpeechConstant.NLU,
                 "_language",
@@ -31,14 +33,18 @@ public class AllRecogParams extends CommonRecogParams {
                 SpeechConstant.DECODER,
                 SpeechConstant.PROP));
 
-        boolParams.addAll(Arrays.asList(SpeechConstant.DISABLE_PUNCTUATION,  "_nlu_online"));
+        boolParams.addAll(Arrays.asList(SpeechConstant.DISABLE_PUNCTUATION, "_nlu_online"));
 
-        // copyOfflineResource(context);
+        Log.d(TAG, "AllRecogParams: yyk7");
+
+       //  copyOfflineResource(context);
     }
 
     public Map<String, Object> fetch(SharedPreferences sp) {
 
+        Log.d(TAG, "fetch: son class yyk4");
         Map<String, Object> map = super.fetch(sp);
+
 
         PidBuilder builder = new PidBuilder();
         map = builder.addPidInfo(map);

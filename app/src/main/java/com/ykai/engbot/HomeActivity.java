@@ -92,6 +92,7 @@ public class HomeActivity extends Activity implements IStatus {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+
         // HomeActivity begin
         _this = this;
 
@@ -109,6 +110,9 @@ public class HomeActivity extends Activity implements IStatus {
         btnChat = (Button) findViewById(R.id.chat_btn);
         btnTTS = (Button) findViewById(R.id.txt_2_voice_btn);
         setting = (Button) findViewById(R.id.voice_settings);
+
+        Intent intent = new Intent(HomeActivity.this, settingActivityClass);
+        startActivity(intent);
 
 
         btnChat.setOnClickListener(new View.OnClickListener() {
@@ -315,6 +319,8 @@ public class HomeActivity extends Activity implements IStatus {
     }
 
     protected CommonRecogParams getApiParams() {
+
+        Log.d(TAG, "getApiParams: yyk5");
         return new AllRecogParams(this);
     }
 

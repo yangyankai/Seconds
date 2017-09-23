@@ -53,13 +53,13 @@
         <item>touch,  关闭静音断句功能。用戶手动停止录音</item>
         <item>mfe, 算法实现vad，不推荐</item>
     </string-array>
-    <string name="_model_default"></string>
+    <string name="_model_default">input, 输入法模型，适用于长句及长语音，有逗号分割， 无语义</string>
     <string-array name="_model_list">
         <item>@string/vad_default</item>
         <item>search, 搜索模型，默认， 适用于短句， 无逗号，可以有语义</item>
         <item>input, 输入法模型，适用于长句及长语音，有逗号分割， 无语义</item>
     </string-array>
-    <string name="vad_timeout_default"></string>
+    <string name="vad_timeout_default">0, 开启长语音（离线不支持）。建议长句输入模型。</string>
     <string-array name="vad_timeout_list">
         <item>@string/vad_timeout_default</item>
         <item>0, 开启长语音（离线不支持）。建议长句输入模型。</item>

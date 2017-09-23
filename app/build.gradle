@@ -8,7 +8,7 @@ android {
         applicationId "com.ykai.engbot"
 //        applicationId "com.baidu.speech.recognizerdemo"
 
-        minSdkVersion 15
+        minSdkVersion 24
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -34,4 +34,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile files('libs/bdasr_V3_20170801_60da871.jar')
     compile files('libs/gson-2.2.4.jar')
+    compile files('libs/aip-java-sdk-3.1.0.jar')
 }
