@@ -17,6 +17,7 @@ import java.util.List;
 public class HistoryDetailActivity extends Activity {
     private String TAG = "HistoryDetailActivity";
     TextView textView;
+    TextView textTitle;
 
     private ListView mListView;
     private MyAdapter mAdapter;
@@ -36,12 +37,17 @@ public class HistoryDetailActivity extends Activity {
         setContentView(R.layout.history_detail_activity);
         Intent intent = getIntent();
         String result = "";
+        String strTitle = "";
 
+        textTitle = (TextView) findViewById(R.id.textTitle);
         textView = (TextView) findViewById(R.id.detail);
         textViewBround = (TextView) findViewById(R.id.textbround);
         String myKeyWord;
         if (null != intent) {
+            strTitle = intent.getStringExtra("sentence");
             myKeyWord = intent.getStringExtra("my_word");
+            textTitle.setText("" + strTitle);
+
             Log.d(TAG, "onCreate: keyword" + myKeyWord);
             switch (myKeyWord) {
                 case "111":

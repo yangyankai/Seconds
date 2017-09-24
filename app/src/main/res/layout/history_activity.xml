@@ -10,10 +10,10 @@
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/shape_top1"
         android:gravity="center"
-        android:text=" 关键字 1"
+        android:text="我们团队的组成人员"
         android:textColor="#fff"
         android:textSize="16sp"
 
@@ -30,7 +30,7 @@
 
         android:background="@drawable/shape_top2"
         android:gravity="center"
-        android:text="关键字 2"
+        android:text="我们产品的介绍"
         android:textColor="#fff"
         android:textSize="16sp"
 
@@ -47,7 +47,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_top3"
         android:gravity="center"
-        android:text="关键字 3"
+        android:text="商业计划与推广计划"
         android:textColor="#fff"
         android:textSize="16sp"
 
@@ -65,7 +65,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_top4"
         android:gravity="center"
-        android:text="关键字4"
+        android:text="参加编程马拉松真好玩"
         android:textColor="#fff"
         android:textSize="16sp"
         android:visibility="visible" />
@@ -78,16 +78,37 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="5dp"
         android:background="@drawable/process"
-        android:text="" />
+        android:text=""
+        android:visibility="gone" />
 
 
     <ProgressBar
         android:id="@+id/progress"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:visibility="visible" />
 
-        android:visibility="gone" />
+    <TextView
+        android:id="@+id/txtLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp"
+        android:text=""
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:padding="15dp"
+        android:text="NLP:卷积神经网络 CNN 努力分析中.."
+        android:textColor="#fff" />
 
 
 </RelativeLayout>

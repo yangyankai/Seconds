@@ -17,12 +17,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 /**
  * Created by ykai on 17/9/23.
  */
 public class HistoryActivity extends Activity {
     private String TAG = "HistoryActivity";
+    TextView textTile;
 
     private ProgressBar progressBar;
 
@@ -43,9 +45,11 @@ public class HistoryActivity extends Activity {
     TextView button3;
     TextView button4;
     String strTopic1 = "我们团队的组成人员";
-    String strTopic2 = "参加马拉松真好玩";
+    String strTopic2 = "我们产品的介绍";
     String strTopic3 = "商业计划与推广计划";
-    String strTopic4 = "我们产品的介绍";
+    String strTopic4 = "参加编程马拉松真好玩";
+
+    TextView txtLog;
 
 
     Button begin;
@@ -59,11 +63,17 @@ public class HistoryActivity extends Activity {
                 button3.setText(strTopic3 + ":" + top3Number);
 
                 button4.setText(strTopic4 + ":" + top4Number);
+                if (null != msg.obj) {
+                    txtLog.setText("" + msg.obj.toString());
+                }
 
             } else {
+                textTile = (TextView) findViewById(R.id.txtTitle);
+                textTile.setText("NLP");
                 progressBar.setVisibility(View.GONE);
+                txtLog.setText("处理完成");
 
-                Toast.makeText(_this, "处理完成", Toast.LENGTH_LONG).show();
+//                Toast.makeText(_this, "处理完成", Toast.LENGTH_LONG).show();
             }
         }
     };
@@ -81,49 +91,13 @@ public class HistoryActivity extends Activity {
         button3 = (TextView) findViewById(R.id.btn3);
         button4 = (TextView) findViewById(R.id.btn4);
         begin = (Button) findViewById(R.id.begin);
+        txtLog = (TextView) findViewById(R.id.txtLog);
 
 
         begin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
-                begin.setVisibility(View.GONE);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
 
-                        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//chinese_log_temp.txt";
-                        File tempFile = new File(tempPath);
-                        if (tempFile.exists() && tempFile.isFile()) {
-                            BufferedReader reader = null;
-                            StringBuilder stringBuilder = new StringBuilder();
-                            try {
-                                reader = new BufferedReader(new FileReader(tempFile));
-                                String tempString = null;
-                                line = 1;
-                                while ((tempString = reader.readLine()) != null) {
-                                    stringBuilder.append(tempString).append("\n");
-                                    line++;
-                                    myCompare(tempString);
-                                }
-                                Message msg = new Message();
-                                msg.what = -100;
-                                mHandler.sendMessage(msg);
-                                reader.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } finally {
-                                if (reader != null) {
-                                    try {
-                                        reader.close();
-                                    } catch (IOException e1) {
-                                    }
-                                }
-                            }
-                        }
-                        // return "文件为空,请先录音";
-                    }
-                }).start();
             }
         });
 
@@ -135,6 +109,8 @@ public class HistoryActivity extends Activity {
                                        public void onClick(View view) {
                                            Intent intent = new Intent(_this, HistoryDetailActivity.class);
                                            intent.putExtra("my_word", "111");
+                                           intent.putExtra("sentence", strTopic1);
+
                                            startActivity(intent);
 
                                        }
@@ -150,6 +126,7 @@ public class HistoryActivity extends Activity {
                                        public void onClick(View view) {
                                            Intent intent = new Intent(_this, HistoryDetailActivity.class);
                                            intent.putExtra("my_word", "222");
+                                           intent.putExtra("sentence", strTopic2);
                                            startActivity(intent);
 
                                        }
@@ -165,6 +142,7 @@ public class HistoryActivity extends Activity {
                                        public void onClick(View view) {
                                            Intent intent = new Intent(_this, HistoryDetailActivity.class);
                                            intent.putExtra("my_word", "333");
+                                           intent.putExtra("sentence", strTopic3);
                                            startActivity(intent);
 
                                        }
@@ -180,6 +158,7 @@ public class HistoryActivity extends Activity {
                                        public void onClick(View view) {
                                            Intent intent = new Intent(_this, HistoryDetailActivity.class);
                                            intent.putExtra("my_word", "444");
+                                           intent.putExtra("sentence", strTopic4);
                                            startActivity(intent);
 
                                        }
@@ -187,7 +166,53 @@ public class HistoryActivity extends Activity {
 
         );
 
+        beginNLP();
 
+    }
+
+    private void beginNLP() {
+        progressBar.setVisibility(View.VISIBLE);
+        begin.setVisibility(View.GONE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//chinese_log_temp.txt";
+                File tempFile = new File(tempPath);
+                if (tempFile.exists() && tempFile.isFile()) {
+                    BufferedReader reader = null;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    try {
+                        reader = new BufferedReader(new FileReader(tempFile));
+                        String tempString = null;
+                        line = 1;
+                        while ((tempString = reader.readLine()) != null) {
+                            stringBuilder.append(tempString).append("\n");
+                            line++;
+                            myCompare(tempString);
+                        }
+                        Message msg = new Message();
+                        msg.what = -100;
+                        mHandler.sendMessage(msg);
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (reader != null) {
+                            try {
+                                reader.close();
+                            } catch (IOException e1) {
+                            }
+                        }
+                    }
+                } else {
+                    progressBar.setVisibility(View.GONE);
+                    txtLog.setText("请返回上一界面录音");
+                    textTile.setText("NLP");
+                }
+                // return "文件为空,请先录音";
+            }
+        }).start();
     }
 
     private void myCompare(String str) {
@@ -198,6 +223,7 @@ public class HistoryActivity extends Activity {
 
         msg.what = 100;
         double currentSimilar = NLPUtil.howSimilar(strTopic1, str);
+
         Log.d(TAG, "myCompare: 1 " + currentSimilar);
 
         if (similar < currentSimilar) {
@@ -229,26 +255,31 @@ public class HistoryActivity extends Activity {
 
             similar = currentSimilar;
         }
+        DecimalFormat df = new DecimalFormat("######0.00");
+        String strProcessing = (df.format(similar * 100)) + "%\n" + str;
         switch (numMax) {
             case 1:
                 top1Number++;
-                MyPrintLogUtil.printTopic1("# " + similar + "\n" + str);
+                MyPrintLogUtil.printTopic1(strProcessing);
+                msg.obj = strProcessing;
 
                 break;
 
             case 2:
-                MyPrintLogUtil.printTopic2("# " + similar + "\n" + str);
+                MyPrintLogUtil.printTopic2(strProcessing);
+                msg.obj = strProcessing;
 
 
                 top2Number++;
                 break;
             case 3:
-                MyPrintLogUtil.printTopic3("# " + similar + "\n" + str);
-
+                MyPrintLogUtil.printTopic3(strProcessing);
+                msg.obj = strProcessing;
                 top3Number++;
                 break;
             case 4:
-                MyPrintLogUtil.printTopic4("# " + similar + "\n" + str);
+                MyPrintLogUtil.printTopic4(strProcessing);
+                msg.obj = strProcessing;
 
                 top4Number++;
                 break;
