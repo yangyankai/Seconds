@@ -68,7 +68,6 @@ public class HistoryActivity extends Activity {
                 }
 
             } else {
-                textTile = (TextView) findViewById(R.id.txtTitle);
                 textTile.setText("NLP");
                 progressBar.setVisibility(View.GONE);
                 txtLog.setText("处理完成");
@@ -91,6 +90,8 @@ public class HistoryActivity extends Activity {
         button3 = (TextView) findViewById(R.id.btn3);
         button4 = (TextView) findViewById(R.id.btn4);
         begin = (Button) findViewById(R.id.begin);
+        textTile = (TextView) findViewById(R.id.txtTitle);
+
         txtLog = (TextView) findViewById(R.id.txtLog);
 
 
