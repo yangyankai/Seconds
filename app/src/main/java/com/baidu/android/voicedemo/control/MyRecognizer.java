@@ -77,6 +77,11 @@ public class MyRecognizer {
     }
 
     public void start(Map<String, Object> params) {
+
+        // yyk begin
+        params.put("vad.endpoint-timeout",0);
+        // yyk end
+
         String json = new JSONObject(params).toString();
         Logger.info(TAG + ".Debug", "asr params(反馈请带上此行日志):" + json);
         asr.send(SpeechConstant.ASR_START, json, null, 0, 0);
