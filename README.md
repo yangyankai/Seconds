@@ -16,6 +16,14 @@ https://yangyankai.github.io/assets/images/Seconds.apk
 4. 通过NLP(自然语言处理)按照会议的要点自动把文本归纳聚合到不同部分。
 
 
+项目开发计划
+1. 近期目标
+完善界面和优化交互。（剩余工作量不多了）
+
+远期目标：
+1. 测试百度的远场语音借口，尝试优化远距离使用体验。
+2. 测试谷歌的文本处理的 AI 自动组织归纳功能，尝试优化整理功能。
+
 # App Name: Seconds
 
 Describe in a sentence：This is a helper for meeting minutes.
