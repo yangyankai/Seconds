@@ -1,9 +1,14 @@
 package com.ykai.engbot;
 
 import android.os.Environment;
+import android.os.Message;
+import android.view.View;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -174,6 +179,80 @@ public class MyPrintLogUtil {
         }
 
     }
+
+
+    public static String readTopic1() {
+
+        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top1_log_temp.txt";
+
+
+        File tempFile = new File(tempPath);
+        StringBuilder stringBuilder = new StringBuilder();
+
+
+
+        if (tempFile.exists() && tempFile.isFile()) {
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new FileReader(tempFile));
+                String tempString = null;
+//                        line = 1;
+                while ((tempString = reader.readLine()) != null) {
+                    stringBuilder.append(tempString).append("\n");
+                }
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e1) {
+                    }
+                }
+            }
+        }
+
+        return stringBuilder.toString();
+    }
+
+
+
+    public static String readTopic2( ) {
+
+        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top2_log_temp.txt";
+
+
+        File tempFile = new File(tempPath);
+        StringBuilder stringBuilder = new StringBuilder();
+
+
+
+        if (tempFile.exists() && tempFile.isFile()) {
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new FileReader(tempFile));
+                String tempString = null;
+//                        line = 1;
+                while ((tempString = reader.readLine()) != null) {
+                    stringBuilder.append(tempString).append("\n");
+                }
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e1) {
+                    }
+                }
+            }
+        }
+
+        return stringBuilder.toString();
+    }
+
 
 
     public static void printTopic2(String content) {

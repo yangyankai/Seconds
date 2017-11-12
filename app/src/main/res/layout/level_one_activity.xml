@@ -5,109 +5,80 @@
     android:background="#666">
 
 
-    <TextView
-        android:id="@+id/btn1"
+    <EditText
+        android:id="@+id/et1"
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:background="@drawable/shape_top1"
         android:gravity="center"
-        android:text="我们团队的组成人员"
+        android:hint="输入提纲 1"
         android:textColor="#fff"
         android:textSize="16sp"
-
         android:visibility="visible" />
 
-    <TextView
-        android:id="@+id/btn2"
+    <EditText
+        android:id="@+id/et2"
         android:layout_width="250dp"
         android:layout_height="100dp"
-
-        android:layout_below="@id/btn1"
+        android:layout_below="@id/et1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-
         android:background="@drawable/shape_top2"
         android:gravity="center"
-        android:text="我们产品的介绍"
+        android:hint="输入提纲 2"
         android:textColor="#fff"
         android:textSize="16sp"
-
         android:visibility="visible" />
 
-    <TextView
-        android:id="@+id/btn3"
+    <EditText
+        android:id="@+id/et3"
         android:layout_width="250dp"
         android:layout_height="100dp"
-
-        android:layout_below="@id/btn2"
+        android:layout_below="@id/et2"
         android:layout_centerHorizontal="true"
-
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_top3"
         android:gravity="center"
-        android:text="商业计划与推广计划"
+        android:hint="输入提纲 3"
         android:textColor="#fff"
         android:textSize="16sp"
-
         android:visibility="visible" />
 
 
-    <TextView
-        android:id="@+id/btn4"
+    <EditText
+        android:id="@+id/et4"
         android:layout_width="250dp"
         android:layout_height="100dp"
-
-        android:layout_below="@id/btn3"
+        android:layout_below="@id/et3"
         android:layout_centerHorizontal="true"
-
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_top4"
         android:gravity="center"
-        android:text="参加编程马拉松真好玩"
+        android:hint="输入提纲 4"
         android:textColor="#fff"
         android:textSize="16sp"
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/begin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/btn_begin"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/process"
+        android:background="@drawable/btn_begin"
         android:text=""
-        android:visibility="gone" />
+         />
 
-
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:visibility="visible" />
-
-    <TextView
-        android:id="@+id/txtLog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:padding="15dp"
-        android:text=""
-        android:textColor="#fff" />
 
     <TextView
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-
         android:padding="15dp"
-        android:text="NLP:卷积神经网络 CNN 努力分析中.."
+        android:text="请输入会议纲要, 可输入0 - 4个"
         android:textColor="#fff" />
 
 

@@ -101,8 +101,11 @@
         <!-- home end -->
 
         <activity android:name="com.ykai.englishdialog.myapplication.ChatMainActivity"></activity>
-        <activity android:name=".HistoryActivity" />
-        <activity android:name=".HistoryDetailActivity" />
+
+        <activity android:name=".LevelOneActivity"/>
+        <activity android:name=".RecordActivity"/>
+        <activity android:name=".LevelTwoActivity"/>
+        <activity android:name=".ResultActivity"/>
 
 
         <!-- void begin -->

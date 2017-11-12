@@ -2,139 +2,107 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#f5f5f5">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:text="会议时长"
-        android:textColor="#000"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/meeting_during"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/shape_cor_blue"
-        android:padding="5dp"
-        android:text="重点归纳"
-        android:textColor="#fff"
-        android:textSize="13sp" />
-    <!--android:layout_centerHorizontal="true"-->
-    <TextView
-        android:id="@+id/counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="00:00"
-        android:textColor="#0093c4"
-        android:textSize="64sp" />
-
-
-    <!--android:background="@drawable/shape_cor"-->
-
-
-    <Button
-        android:id="@+id/chat_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chat"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/txt_2_voice_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextToVoice"
-        android:visibility="gone" />
-
-
-    <!--Settings -->
-    <Button
-        android:id="@+id/voice_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:background="#0000"
-        android:text="..."
-        android:visibility="visible" />
-
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/ll_add_meeting"
         android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="230dp">
+        android:layout_marginTop="20dp"
+        android:background="#4dd0e1"
+        android:orientation="vertical">
+
 
         <ImageView
-            android:id="@+id/recorder_bigger"
-            android:layout_width="150dp"
+            android:id="@+id/textAdd"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/recorder_bigger" />
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="15dp"
+            android:src="@drawable/add_meeting"
+            android:text="Add new "
+            android:textColor="#fff" />
 
-        <ImageView
-            android:id="@+id/little"
-            android:layout_width="60dp"
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/recoder_little" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:text="创建会议"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <ImageView
-
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="45dp"
-        android:src="@drawable/join_metting"
-        android:visibility="gone" />
-
-
-    <!--翻译-->
-    <TextView
-        android:id="@+id/edit"
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_below="@+id/ll_add_meeting"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="140dp"
-        android:text="秒记 - 会议记录的好助手"
-        android:textColor="#000"
+        android:layout_height="match_parent">
+        <TextView
 
-        android:textSize="17sp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="#b3000000"
+            android:text="我的记录"
+            />
+       <View
+           android:layout_marginTop="8dp"
+           android:background="#3d979797"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="8dp"
+                android:textSize="14sp"
+                android:text="周五 9月22日"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/ll_item"
+                android:background="#fff"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="90dp">
+                <TextView
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="11dp"
+                    android:textColor="#a3000000"
+                    android:textSize="18sp"
+                    android:text="会议记录1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="13sp"
+                    android:text="14:30-16:00，1小时30分钟"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="13sp"
+                    android:text="我的产品简单介绍和商业计划"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
 
-    <!--显示录入过程过程-->
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="250dp"
-        android:text="引擎初始化..."
-        android:visibility="visible" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/voice_2_txt_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/shape_cor"
-        android:text="开始"
-        android:textColor="#fff"
-        android:textSize="19sp" />
+
 </RelativeLayout>

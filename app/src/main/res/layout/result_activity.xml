@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#666"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+
+        android:text="会议记录"
+        android:textColor="#fff" />
+
+
+    <Button
+        android:id="@+id/voice"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="会议音频资料" />
+
+    <ScrollView
+        android:layout_width="320dp"
+        android:layout_height="130dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="#ddd">
+
+
+        <TextView
+            android:padding="15dp"
+
+
+            android:id="@+id/text_topic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            >
+
+        </TextView>
+    </ScrollView>
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="320dp"
+        android:layout_height="340dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="#ddd">
+
+        <TextView
+            android:id="@+id/text_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:textSize="15sp"
+            android:visibility="visible" />
+    </ScrollView>
+
+
+</LinearLayout>
