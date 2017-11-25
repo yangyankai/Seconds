@@ -46,13 +46,14 @@ import java.util.TimerTask;
 public class RecordActivity extends Activity implements IStatus {
     // RecordActivity begin
     private Activity _this;
+    private String  beginTimeStamp;
+    private String endTimeStamp;
     TextView editText;
     private boolean isRecording = false;
     Timer timer = new Timer();
     TextView textView;
     Button btnVoice;
     Button btnTTS;
-    Button btnChat;
     Button setting;
     private int recLen = 0;
 
@@ -132,6 +133,9 @@ public class RecordActivity extends Activity implements IStatus {
                 intent.putExtra("tp2",top2);
                 intent.putExtra("tp3",top3);
                 intent.putExtra("tp4",top4);
+                intent.putExtra("beginTimeStamp",beginTimeStamp);
+                intent.putExtra("endTimeStamp",endTimeStamp);
+
                 startActivity(intent);
             }
         });
@@ -153,23 +157,11 @@ public class RecordActivity extends Activity implements IStatus {
         editText = (TextView) findViewById(R.id.edit);
         textView = (TextView) findViewById(R.id.text);
         btnVoice = (Button) findViewById(R.id.voice_2_txt_btn);
-        btnChat = (Button) findViewById(R.id.chat_btn);
         btnTTS = (Button) findViewById(R.id.txt_2_voice_btn);
         setting = (Button) findViewById(R.id.voice_settings);
         counter = (TextView) findViewById(R.id.counter);
 
 
-        btnChat.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View view) {
-
-                                           translate();
-
-
-                                       }
-                                   }
-
-        );
         // RecordActivity end
 
 
@@ -367,6 +359,8 @@ public class RecordActivity extends Activity implements IStatus {
 
 
                 }
+                beginTimeStamp = System.currentTimeMillis()+"";
+                // begin recording meet void.
                 beginTalk();
 //                handler.postDelayed(runnable, 1000);
 
@@ -548,6 +542,7 @@ public class RecordActivity extends Activity implements IStatus {
                 btnVoice.setEnabled(true);
                 setting.setEnabled(false);
                 isRecording = false;
+                endTimeStamp = System.currentTimeMillis()+"";
                 break;
 
             case STATUS_STOPPED:

@@ -17,6 +17,31 @@ import java.util.Date;
  */
 public class MyPrintLogUtil {
 
+    public static String APP_PATH="";
+
+    public static void initAppPath(){
+
+        String androidRootPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+        String appPath = androidRootPath +File.separator+"Seconds";
+        APP_PATH =appPath;
+        //新建一个File，传入文件夹目录
+        File file = new File(appPath);
+//判断文件夹是否存在，如果不存在就创建，否则不创建
+        if (!file.exists()) {
+            //通过file的mkdirs()方法创建<span style="color:#FF0000;">目录中包含却不存在</span>的文件夹
+            file.mkdirs();
+        }
+    }
+
+    public static void createFileDirectory(String path){
+        File file = new File(path);
+//判断文件夹是否存在，如果不存在就创建，否则不创建
+        if (!file.exists()) {
+            //通过file的mkdirs()方法创建<span style="color:#FF0000;">目录中包含却不存在</span>的文件夹
+            file.mkdirs();
+        }
+    }
+
     public static void printEnglishLog(String content) {
         content += "\n";
 
@@ -125,8 +150,8 @@ public class MyPrintLogUtil {
 
     }
 
-
-    public static void printTopic1(String content) {
+//  save topic
+    public static void printTopic(String content) {
         content += "\n";
 
         String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top1_log_temp.txt";
@@ -180,13 +205,36 @@ public class MyPrintLogUtil {
 
     }
 
+    //  save topic
+    public static void printTopic(String content,String path) {
+        content += "\n";
+        path += File.separator+"重点.txt";
+        FileWriter fw = null;
 
-    public static String readTopic1() {
+        try {
 
-        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top1_log_temp.txt";
+            fw = new FileWriter(path, true);
+
+            fw.write(content);
+
+            fw.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+    public static String readTopic(String path) {
+
+        path += File.separator+"重点.txt";
+
+//        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top1_log_temp.txt";
 
 
-        File tempFile = new File(tempPath);
+        File tempFile = new File(path);
         StringBuilder stringBuilder = new StringBuilder();
 
 
@@ -217,45 +265,8 @@ public class MyPrintLogUtil {
     }
 
 
-
-    public static String readTopic2( ) {
-
-        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top2_log_temp.txt";
-
-
-        File tempFile = new File(tempPath);
-        StringBuilder stringBuilder = new StringBuilder();
-
-
-
-        if (tempFile.exists() && tempFile.isFile()) {
-            BufferedReader reader = null;
-            try {
-                reader = new BufferedReader(new FileReader(tempFile));
-                String tempString = null;
-//                        line = 1;
-                while ((tempString = reader.readLine()) != null) {
-                    stringBuilder.append(tempString).append("\n");
-                }
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (reader != null) {
-                    try {
-                        reader.close();
-                    } catch (IOException e1) {
-                    }
-                }
-            }
-        }
-
-        return stringBuilder.toString();
-    }
-
-
-
-    public static void printTopic2(String content) {
+// save result
+    public static void printResultContent(String content) {
         content += "\n";
 
         String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top2_log_temp.txt";
@@ -309,48 +320,14 @@ public class MyPrintLogUtil {
 
     }
 
-
-    public static void printTopic3(String content) {
+    public static void printResultContent(String content,String path) {
         content += "\n";
-
-        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top3_log_temp.txt";
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top3_log.txt";
-
-//        String tempPath = "/local/newlog/aplog/overheat_log_temp.txt";
-
-//        String path = "/local/newlog/aplog/overheat_log.txt";
-
-
-        File tempFile = new File(tempPath);
-
-        File file = new File(path);
-
-
-        if (tempFile.exists() && tempFile.isFile()) {
-
-            if (tempFile.length() >= 1024 * 1024) {
-
-                if (file.isFile() && file.exists()) {
-
-                    file.delete();
-
-                }
-
-                tempFile.renameTo(file);
-
-            }
-
-        }
-
-
+path+=File.separator+"处理结果.txt";
         FileWriter fw = null;
-
-        long beginTime = System.currentTimeMillis();
-
 
         try {
 
-            fw = new FileWriter(tempPath, true);
+            fw = new FileWriter(path, true);
 
             fw.write(content);
 
@@ -364,60 +341,45 @@ public class MyPrintLogUtil {
 
     }
 
+    public static String readResultContent( String path) {
 
-    public static void printTopic4(String content) {
-        content += "\n";
+        path+=File.separator+"处理结果.txt";
+        File tempFile = new File(path);
+        StringBuilder stringBuilder = new StringBuilder();
 
-        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top4_log_temp.txt";
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "//top4_log.txt";
-
-//        String tempPath = "/local/newlog/aplog/overheat_log_temp.txt";
-
-//        String path = "/local/newlog/aplog/overheat_log.txt";
-
-
-        File tempFile = new File(tempPath);
-
-        File file = new File(path);
 
 
         if (tempFile.exists() && tempFile.isFile()) {
-
-            if (tempFile.length() >= 1024 * 1024) {
-
-                if (file.isFile() && file.exists()) {
-
-                    file.delete();
-
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new FileReader(tempFile));
+                String tempString = null;
+//                        line = 1;
+                while ((tempString = reader.readLine()) != null) {
+                    stringBuilder.append(tempString).append("\n");
                 }
-
-                tempFile.renameTo(file);
-
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e1) {
+                    }
+                }
             }
-
         }
 
-
-        FileWriter fw = null;
-
-        long beginTime = System.currentTimeMillis();
-
-
-        try {
-
-            fw = new FileWriter(tempPath, true);
-
-            fw.write(content);
-
-            fw.close();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-
-        }
-
+        return stringBuilder.toString();
     }
 
 
+    public static void moveMeetingContent(String currentMeetingPath) {
+
+        String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator + "chinese_log_temp.txt";
+        FileOperator.moveFile(tempPath,currentMeetingPath);
+        tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() +File.separator+ "english_log_temp.txt";
+        FileOperator.moveFile(tempPath,currentMeetingPath);
+    }
 }

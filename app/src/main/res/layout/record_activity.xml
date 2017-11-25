@@ -41,12 +41,7 @@
     <!--android:background="@drawable/shape_cor"-->
 
 
-    <Button
-        android:id="@+id/chat_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chat"
-        android:visibility="gone" />
+
 
     <Button
         android:id="@+id/txt_2_voice_btn"

@@ -25,6 +25,12 @@ public class LevelTwoActivity extends Activity {
     private Button btnBegin;
     private Activity _this;
     private ArrayList<String> topics = new ArrayList<>();
+    String currentMeetingPath;
+
+
+
+    private String  beginTimeStamp;
+    private String endTimeStamp;
 
 
     // yyk begin
@@ -84,12 +90,15 @@ public class LevelTwoActivity extends Activity {
                 }
 
 
-                MyPrintLogUtil.printTopic1(resultTopic);
+                MyPrintLogUtil.printTopic(resultTopic,currentMeetingPath);
+                MyPrintLogUtil.printResultContent(resultContent,currentMeetingPath);
+                MyPrintLogUtil.moveMeetingContent(currentMeetingPath);
 
 
-                MyPrintLogUtil.printTopic2(resultContent);
                 Intent intent = new Intent(_this,ResultActivity.class);
+                intent.putExtra("currentMeetingPath",currentMeetingPath);
                 startActivity(intent);
+
 
                 Toast.makeText(_this, "处理完成", Toast.LENGTH_LONG).show();
             }
@@ -110,6 +119,12 @@ public class LevelTwoActivity extends Activity {
         top2 = intent.getStringExtra("tp2");
         top3 = intent.getStringExtra("tp3");
         top4 = intent.getStringExtra("tp4");
+        beginTimeStamp = intent.getStringExtra("beginTimeStamp");
+        endTimeStamp = intent.getStringExtra("endTimeStamp");
+
+        currentMeetingPath = MyPrintLogUtil.APP_PATH+ File.separator+(beginTimeStamp+"-"+endTimeStamp);
+        MyPrintLogUtil.createFileDirectory(currentMeetingPath);
+
 
 
         et1 = (EditText) findViewById(R.id.et1);

@@ -8,6 +8,8 @@ import android.widget.TextView;
  * Created by ykai on 17/11/12.
  */
 public class ResultActivity extends Activity{
+    String currentMeetingPath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,8 +17,10 @@ public class ResultActivity extends Activity{
         TextView textTopic = (TextView) findViewById(R.id.text_topic);
         TextView textDetail = (TextView) findViewById(R.id.text_detail);
 
-        String strTopic = MyPrintLogUtil.readTopic1();
-        String strDetail = MyPrintLogUtil.readTopic2();
+        currentMeetingPath = getIntent().getStringExtra("currentMeetingPath");
+
+        String strTopic = MyPrintLogUtil.readTopic(currentMeetingPath);
+        String strDetail = MyPrintLogUtil.readResultContent(currentMeetingPath);
 
         if(null!=strTopic){
             textTopic.setText(strTopic);
