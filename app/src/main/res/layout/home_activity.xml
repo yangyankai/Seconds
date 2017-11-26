@@ -56,52 +56,11 @@
            android:background="#3d979797"
            android:layout_width="match_parent"
            android:layout_height="1dp"/>
-        <LinearLayout
-            android:orientation="vertical"
+
+        <ListView
+            android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginTop="8dp"
-                android:textSize="14sp"
-                android:text="周五 9月22日"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <LinearLayout
-                android:id="@+id/ll_item"
-                android:background="#fff"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="90dp">
-                <TextView
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginTop="11dp"
-                    android:textColor="#a3000000"
-                    android:textSize="18sp"
-                    android:text="会议记录1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="13sp"
-                    android:text="14:30-16:00，1小时30分钟"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="13sp"
-                    android:text="我的产品简单介绍和商业计划"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
+            android:layout_height="wrap_content"></ListView>
     </LinearLayout>
 
 

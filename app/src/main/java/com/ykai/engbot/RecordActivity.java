@@ -46,8 +46,8 @@ import java.util.TimerTask;
 public class RecordActivity extends Activity implements IStatus {
     // RecordActivity begin
     private Activity _this;
-    private String  beginTimeStamp;
-    private String endTimeStamp;
+    private String beginTimeStamp = null;
+    private String endTimeStamp = null;
     TextView editText;
     private boolean isRecording = false;
     Timer timer = new Timer();
@@ -101,10 +101,10 @@ public class RecordActivity extends Activity implements IStatus {
     // Voice end
 
     // yyk begin
-    String top1=null;
-    String top2=null;
-    String top3=null;
-    String top4=null;
+    String top1 = null;
+    String top2 = null;
+    String top3 = null;
+    String top4 = null;
     // yyk end
 
     @Override
@@ -128,13 +128,13 @@ public class RecordActivity extends Activity implements IStatus {
         meetingDuring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(_this, LevelTwoActivity.class);
-                intent.putExtra("tp1",top1);
-                intent.putExtra("tp2",top2);
-                intent.putExtra("tp3",top3);
-                intent.putExtra("tp4",top4);
-                intent.putExtra("beginTimeStamp",beginTimeStamp);
-                intent.putExtra("endTimeStamp",endTimeStamp);
+                Intent intent = new Intent(_this, LevelTwoActivity.class);
+                intent.putExtra("tp1", top1);
+                intent.putExtra("tp2", top2);
+                intent.putExtra("tp3", top3);
+                intent.putExtra("tp4", top4);
+                intent.putExtra("beginTimeStamp", beginTimeStamp);
+                intent.putExtra("endTimeStamp", endTimeStamp);
 
                 startActivity(intent);
             }
@@ -359,8 +359,14 @@ public class RecordActivity extends Activity implements IStatus {
 
 
                 }
-                beginTimeStamp = System.currentTimeMillis()+"";
-                // begin recording meet void.
+
+                if (null == beginTimeStamp) {
+
+                    beginTimeStamp = System.currentTimeMillis() + "";
+                    // begin recording meet void.
+                    Log.d(TAG, "yyk77: " + beginTimeStamp + "begin");
+                }
+
                 beginTalk();
 //                handler.postDelayed(runnable, 1000);
 
@@ -380,6 +386,7 @@ public class RecordActivity extends Activity implements IStatus {
                 @Override
                 public void run() {
 //                    if (isRecording) {
+
                     if (btnVoice.getText().toString().contains("停止")) {
                         recLen++;
 
@@ -542,11 +549,13 @@ public class RecordActivity extends Activity implements IStatus {
                 btnVoice.setEnabled(true);
                 setting.setEnabled(false);
                 isRecording = false;
-                endTimeStamp = System.currentTimeMillis()+"";
                 break;
 
             case STATUS_STOPPED:
 
+
+                endTimeStamp = System.currentTimeMillis() + "";
+                Log.d(TAG, "yyk77: " + endTimeStamp + "end");
                 //timer.schedule(task, 100000000, 1000);       // timeTask
 
                 btnVoice.setText("正在取消...");

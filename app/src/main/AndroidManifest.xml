@@ -92,7 +92,8 @@
         <!--</activity>-->
 
         <!-- home begin -->
-        <activity android:name=".HomeActivity">
+        <activity android:name=".HomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -102,10 +103,10 @@
 
         <activity android:name="com.ykai.englishdialog.myapplication.ChatMainActivity"></activity>
 
-        <activity android:name=".LevelOneActivity"/>
-        <activity android:name=".RecordActivity"/>
-        <activity android:name=".LevelTwoActivity"/>
-        <activity android:name=".ResultActivity"/>
+        <activity android:name=".LevelOneActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RecordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".LevelTwoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ResultActivity" android:screenOrientation="portrait"/>
 
 
         <!-- void begin -->

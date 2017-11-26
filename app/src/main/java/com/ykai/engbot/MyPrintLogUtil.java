@@ -2,7 +2,10 @@ package com.ykai.engbot;
 
 import android.os.Environment;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
+
+import com.ykai.engbot.entity.RecordEntity;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,6 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -382,4 +386,39 @@ path+=File.separator+"处理结果.txt";
         tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() +File.separator+ "english_log_temp.txt";
         FileOperator.moveFile(tempPath,currentMeetingPath);
     }
+
+    public static ArrayList<RecordEntity> GetFiles()  //搜索目录，扩展名，是否进入子文件夹
+    {
+        ArrayList<RecordEntity> list = new ArrayList<>();
+
+        String path =Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"Seconds";
+
+        File[] files = new File(path).listFiles();
+
+        for (int i = 0; i < files.length; i++)
+        {
+            File f = files[i];
+
+            if (f.isDirectory())  //忽略点文件（隐藏文件/文件夹）
+            {
+                String strPath = f.getName();
+                if(null!=strPath&& strPath.contains("-")&& strPath.length()>20){
+                    String [] times= strPath.split("-");
+                    if(times.length == 2){
+                        RecordEntity entity = new RecordEntity();
+                        entity.beginTimeStamp = times[0];
+                        entity.endTimeStamp = times[1];
+                        list.add(entity);
+                    }
+                }
+
+
+            }
+
+        }
+        return list;
+    }
+
+
+
 }

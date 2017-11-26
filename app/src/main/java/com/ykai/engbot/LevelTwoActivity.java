@@ -189,6 +189,9 @@ public class LevelTwoActivity extends Activity {
                 addTopic(top3, t3_1, t3_2);
                 addTopic(top4, t4_1, t4_2);
 
+                if (topics.size() <= 0) {
+                    topics.add("此次会议没输入重点");
+                }
 
                 saperateResult = new String[topics.size()];
 
