@@ -28,8 +28,7 @@ public class LevelTwoActivity extends Activity {
     String currentMeetingPath;
 
 
-
-    private String  beginTimeStamp;
+    private String beginTimeStamp;
     private String endTimeStamp;
 
 
@@ -86,17 +85,17 @@ public class LevelTwoActivity extends Activity {
                 String resultContent = "";
                 for (String ctt :
                         saperateResult) {
-                    resultContent += (ctt +"\n\n");
+                    resultContent += (ctt + "\n\n");
                 }
 
 
-                MyPrintLogUtil.printTopic(resultTopic,currentMeetingPath);
-                MyPrintLogUtil.printResultContent(resultContent,currentMeetingPath);
+                MyPrintLogUtil.printTopic(resultTopic, currentMeetingPath);
+                MyPrintLogUtil.printResultContent(resultContent, currentMeetingPath);
                 MyPrintLogUtil.moveMeetingContent(currentMeetingPath);
 
 
-                Intent intent = new Intent(_this,ResultActivity.class);
-                intent.putExtra("currentMeetingPath",currentMeetingPath);
+                Intent intent = new Intent(_this, ResultActivity.class);
+                intent.putExtra("currentMeetingPath", currentMeetingPath);
                 startActivity(intent);
 
 
@@ -122,9 +121,8 @@ public class LevelTwoActivity extends Activity {
         beginTimeStamp = intent.getStringExtra("beginTimeStamp");
         endTimeStamp = intent.getStringExtra("endTimeStamp");
 
-        currentMeetingPath = MyPrintLogUtil.APP_PATH+ File.separator+(beginTimeStamp+"-"+endTimeStamp);
+        currentMeetingPath = MyPrintLogUtil.APP_PATH + File.separator + (beginTimeStamp + "-" + endTimeStamp);
         MyPrintLogUtil.createFileDirectory(currentMeetingPath);
-
 
 
         et1 = (EditText) findViewById(R.id.et1);
@@ -166,6 +164,13 @@ public class LevelTwoActivity extends Activity {
         btnBegin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String tempPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "//chinese_log_temp.txt";
+                File file = new File(tempPath);
+                if (!file.exists()) {
+                    Toast.makeText(_this, "请返回上一界面进行录音", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 progressBar.setVisibility(View.VISIBLE);
 
                 String top1 = et1.getText().toString().trim();
@@ -196,7 +201,7 @@ public class LevelTwoActivity extends Activity {
                 saperateResult = new String[topics.size()];
 
                 for (int i = 0; i < topics.size(); i++) {
-                    saperateResult[i] = " 重点 " + (i + 1) + " : " + topics.get(i) ;
+                    saperateResult[i] = " 重点 " + (i + 1) + " : " + topics.get(i);
                 }
 
                 beginNLP();

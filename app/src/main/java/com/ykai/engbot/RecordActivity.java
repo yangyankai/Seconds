@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.baidu.android.voicedemo.activity.setting.AllSetting;
 import com.baidu.android.voicedemo.control.MyRecognizer;
@@ -128,6 +129,12 @@ public class RecordActivity extends Activity implements IStatus {
         meetingDuring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (!"开始录音".equals(btnVoice.getText())) {
+                    Toast.makeText(_this, "请先暂停录音", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Intent intent = new Intent(_this, LevelTwoActivity.class);
                 intent.putExtra("tp1", top1);
                 intent.putExtra("tp2", top2);
@@ -364,7 +371,6 @@ public class RecordActivity extends Activity implements IStatus {
 
                     beginTimeStamp = System.currentTimeMillis() + "";
                     // begin recording meet void.
-                    Log.d(TAG, "yyk77: " + beginTimeStamp + "begin");
                 }
 
                 beginTalk();
@@ -555,7 +561,6 @@ public class RecordActivity extends Activity implements IStatus {
 
 
                 endTimeStamp = System.currentTimeMillis() + "";
-                Log.d(TAG, "yyk77: " + endTimeStamp + "end");
                 //timer.schedule(task, 100000000, 1000);       // timeTask
 
                 btnVoice.setText("正在取消...");

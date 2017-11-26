@@ -61,7 +61,7 @@ public class RecordAdapter extends BaseAdapter {
         textWeek.setText(TimeUtil.getWeekOfDate(begin) + " " + TimeUtil.getMonthAndDay(begin));
         textTitle.setText("会议记录" + (position + 1));
         textHour.setText(TimeUtil.getMinAndSeconds(begin) + "-" + TimeUtil.getMinAndSeconds(end) + "," + TimeUtil.getDuration(begin, end));
-        textSumary.setText("summary");
+        textSumary.setText("会议总结");
 
         return convertView;
 

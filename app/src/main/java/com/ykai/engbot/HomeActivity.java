@@ -19,6 +19,7 @@ import java.util.ArrayList;
  * Created by ykai on 17/11/12.
  */
 public class HomeActivity extends Activity {
+    ArrayList<RecordEntity> list;
     private LinearLayout llAdd;
     private Activity _this;
     private ListView listView;
@@ -33,10 +34,7 @@ public class HomeActivity extends Activity {
         // init app root path
         MyPrintLogUtil.initAppPath();
 
-        final ArrayList<RecordEntity> list = MyPrintLogUtil.GetFiles();
         listView = (ListView) findViewById(R.id.list);
-        RecordAdapter adapter = new RecordAdapter(_this, list);
-        listView.setAdapter(adapter);
 
         llAdd = (LinearLayout) findViewById(R.id.ll_add_meeting);
 
@@ -64,13 +62,14 @@ public class HomeActivity extends Activity {
 
             }
         });
+    }
 
-//
-//        findViewById(R.id.ll_item).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//            }
-//        });
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        list = MyPrintLogUtil.GetFiles();
+        RecordAdapter adapter = new RecordAdapter(_this, list);
+        listView.setAdapter(adapter);
     }
 }

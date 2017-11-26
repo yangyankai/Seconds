@@ -129,7 +129,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/shape_cor"
-        android:text="开始"
+        android:text="开始录音"
         android:textColor="#fff"
         android:textSize="19sp" />
 </RelativeLayout>
